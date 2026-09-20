@@ -1,0 +1,180 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear cuenta | La Dulce Fuente</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{% static 'pasteleria/css/estilos.css' %}">
+</head>
+
+<body class="pagina-auth">
+
+<div class="auth-contenedor">
+
+    <div class="auth-caja auth-registro">
+
+        <a href="{% url 'inicio' %}" class="auth-logo">
+
+            <img
+                src="{% static 'pasteleria/img/logo.png' %}"
+                alt="La Dulce Fuente">
+
+        </a>
+
+        <p class="mini-titulo">
+            ÚNETE A LA DULCE FUENTE
+        </p>
+
+        <h1>
+            Crear mi cuenta
+        </h1>
+
+        <p class="auth-texto">
+            Regístrate para realizar y consultar tus pedidos.
+        </p>
+
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    name="nombre"
+                    class="form-control campo-auth"
+                    placeholder="Tu nombre"
+                    required>
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Usuario
+                </label>
+
+                <input
+                    type="text"
+                    name="usuario"
+                    class="form-control campo-auth"
+                    placeholder="Crea un usuario"
+                    required>
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    name="correo"
+                    class="form-control campo-auth"
+                    placeholder="correo@ejemplo.com"
+                    required>
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Contraseña
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control campo-auth"
+                    placeholder="Crea una contraseña"
+                    required>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Confirmar contraseña
+                </label>
+
+                <input
+                    type="password"
+                    name="confirmar"
+                    class="form-control campo-auth"
+                    placeholder="Repite tu contraseña"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn boton-auth">
+
+                Crear mi cuenta
+
+            </button>
+
+        </form>
+
+
+        <p class="auth-cuenta">
+
+            ¿Ya tienes cuenta?
+
+            <a href="{% url 'login' %}">
+                Inicia sesión
+            </a>
+
+        </p>
+
+
+        <a href="{% url 'inicio' %}"
+           class="volver-inicio">
+
+            ← Volver al inicio
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

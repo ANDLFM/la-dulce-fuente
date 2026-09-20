@@ -1,0 +1,1202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="La Dulce Fuente - Pastelería y Repostería. Donde nace el antojo.">
+
+    <meta
+        name="author"
+        content="La Dulce Fuente">
+
+    <title>
+        La Dulce Fuente | Pastelería & Repostería
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+
+
+    <link
+        rel="stylesheet"
+        href="{% static 'pasteleria/css/estilos.css' %}">
+
+</head>
+
+
+<body>
+
+
+
+<div class="barra-superior">
+
+    ✨ Endulzamos tus momentos especiales
+
+</div>
+
+<nav
+    class="navbar navbar-expand-lg navbar-light menu-principal sticky-top">
+
+    <div class="container">
+
+
+        <!-- LOGO -->
+
+        <a
+            class="navbar-brand marca d-flex align-items-center"
+            href="{% url 'inicio' %}">
+
+            <img
+                src="{% static 'pasteleria/img/logo.png' %}"
+                alt="Logo La Dulce Fuente"
+                class="logo-menu">
+
+            <div>
+
+                <span class="nombre-marca">
+                    La Dulce Fuente
+                </span>
+
+                <small>
+                    Pastelería & Repostería
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- BOTÓN CELULAR -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-label="Abrir menú">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- OPCIONES DEL MENÚ -->
+
+        <div
+            class="collapse navbar-collapse"
+            id="menu">
+
+            <ul
+                class="navbar-nav ms-auto align-items-lg-center">
+
+
+                <!-- INICIO -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link activo"
+                        href="{% url 'inicio' %}">
+
+                        Inicio
+
+                    </a>
+
+                </li>
+
+
+                <!-- CATÁLOGO -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#catalogo">
+
+                        Catálogo
+
+                    </a>
+
+                </li>
+
+
+                <!-- PROMOCIONES -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#promociones">
+
+                        Promociones
+
+                    </a>
+
+                </li>
+
+
+                <!-- NOSOTROS -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#nosotros">
+
+                        Nosotros
+
+                    </a>
+
+                </li>
+
+
+                <!-- CONTACTO REAL -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{% url 'contacto' %}">
+
+                        Contacto
+
+                    </a>
+
+                </li>
+
+
+
+                <!-- =================================================
+                     USUARIO LOGUEADO
+                     ================================================= -->
+
+                {% if user.is_authenticated %}
+
+
+                    <li class="nav-item">
+
+                        <span class="nav-link">
+
+                            Hola,
+                            {{ user.first_name|default:user.username }}
+                            👋
+
+                        </span>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'mis_pedidos' %}">
+
+                            Mis pedidos
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="btn boton-login"
+                            href="{% url 'logout' %}">
+
+                            Cerrar sesión
+
+                        </a>
+
+                    </li>
+
+
+                {% else %}
+
+
+                    <!-- USUARIO SIN SESIÓN -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="btn boton-login"
+                            href="{% url 'login' %}">
+
+                            Iniciar sesión
+
+                        </a>
+
+                    </li>
+
+
+                {% endif %}
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+{% if messages %}
+
+    <div class="container mt-3">
+
+        {% for message in messages %}
+
+            <div
+                class="alert alert-success alert-dismissible fade show"
+                role="alert">
+
+                {{ message }}
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+                </button>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+<section class="hero">
+
+    <div class="container position-relative">
+
+        <div class="row align-items-center min-vh-75">
+
+
+            <div class="col-lg-6 contenido-hero">
+
+
+                <div class="etiqueta">
+
+                    🍓 Pastelería hecha con amor
+
+                </div>
+
+
+                <h1>
+
+                    Cada antojo merece
+
+                    <span>
+                        algo extraordinario.
+                    </span>
+
+                </h1>
+
+
+                <p class="texto-hero">
+
+                    Descubre pasteles y postres creados
+                    para convertir tus celebraciones
+                    en momentos inolvidables.
+
+                </p>
+
+
+                <!-- BOTONES -->
+
+                <div class="botones-hero">
+
+
+                    <a
+                        href="#catalogo"
+                        class="btn boton-principal">
+
+                        Ver catálogo
+
+                    </a>
+
+
+                    {% if user.is_authenticated %}
+
+                        <a
+                            href="{% url 'hacer_pedido' %}"
+                            class="btn boton-secundario">
+
+                            Hacer un pedido
+
+                        </a>
+
+                    {% else %}
+
+                        <a
+                            href="{% url 'login' %}"
+                            class="btn boton-secundario">
+
+                            Hacer un pedido
+
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- DATOS -->
+
+                <div class="ventajas">
+
+
+                    <div>
+
+                        <strong>
+                            100%
+                        </strong>
+
+                        <span>
+                            Hecho con amor
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            +10
+                        </strong>
+
+                        <span>
+                            Sabores
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            ★ 5.0
+                        </strong>
+
+                        <span>
+                            Dulce experiencia
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="zona-visual">
+
+
+                    <div class="circulo-fondo"></div>
+
+
+                <div class="zona-visual zona-logo">
+
+                <div class="circulo-logo"></div>
+          <img
+        src="{% static 'pasteleria/img/logo.png' %}"
+        alt="La Dulce Fuente"
+        class="logo-hero">
+
+        </div>
+
+
+
+                    <!-- TARJETA FLOTANTE 1 -->
+
+                    <div class="tarjeta-flotante tarjeta-1">
+
+                        🧁
+
+                        <div>
+
+                            <strong>
+                                Personaliza
+                            </strong>
+
+                            <small>
+                                Hecho a tu gusto
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TARJETA FLOTANTE 2 -->
+
+                    <div class="tarjeta-flotante tarjeta-2">
+
+                        🍓
+
+                        <div>
+
+                            <strong>
+                                Ingredientes frescos
+                            </strong>
+
+                            <small>
+                                Seleccionados
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    id="catalogo"
+    class="catalogo">
+
+    <div class="container">
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="encabezado-seccion">
+
+            <span>
+                NUESTRAS ESPECIALIDADES
+            </span>
+
+            <h2>
+                Elige tu próximo antojo
+            </h2>
+
+            <p>
+                Descubre nuestros pasteles y postres disponibles.
+            </p>
+
+        </div>
+
+
+
+        {% if productos %}
+
+
+            <div class="row g-4">
+
+
+                {% for producto in productos %}
+
+
+                    <div class="col-12 col-md-6 col-lg-4">
+
+
+                        <div class="producto-card">
+
+
+                            <!-- FOTO -->
+
+                            <div class="producto-imagen-real">
+
+
+                                {% if producto.imagen %}
+
+                                    <img
+                                        src="{{ producto.imagen.url }}"
+                                        alt="{{ producto.nombre }}"
+                                        loading="lazy">
+
+                                {% else %}
+
+                                    <div class="sin-imagen">
+
+                                        🍰
+
+                                    </div>
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                            <!-- INFORMACIÓN -->
+
+                            <div class="producto-info">
+
+
+                                <span class="categoria">
+
+                                    {{ producto.categoria|upper }}
+
+                                </span>
+
+
+                                <h3>
+
+                                    {{ producto.nombre }}
+
+                                </h3>
+
+
+                                <p>
+
+                                    {{ producto.descripcion }}
+
+                                </p>
+
+
+                                <div class="producto-precio">
+
+                                    ${{ producto.precio }}
+
+                                </div>
+
+
+                                <!-- PEDIR -->
+
+                                {% if user.is_authenticated %}
+
+                                    <a
+                                        href="{% url 'hacer_pedido' %}?producto={{ producto.id }}"
+                                        class="btn boton-producto">
+
+                                        Pedir ahora
+
+                                    </a>
+
+                                {% else %}
+
+                                    <a
+                                        href="{% url 'login' %}"
+                                        class="btn boton-producto">
+
+                                        Inicia sesión para pedir
+
+                                    </a>
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- SIN PRODUCTOS -->
+
+            <div class="text-center py-5">
+
+                <div style="font-size:80px;">
+                    🧁
+                </div>
+
+                <h3>
+                    Próximamente nuevos antojos
+                </h3>
+
+                <p>
+                    Actualmente no hay productos disponibles.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+<section
+    id="promociones"
+    class="promociones">
+
+    <div class="container">
+
+
+        <div class="encabezado-seccion">
+
+
+            <span>
+                PROMOCIONES DE LA SEMANA
+            </span>
+
+
+            <h2>
+                Antojos con algo extra
+            </h2>
+
+
+            <p>
+                Descubre las promociones especiales
+                de La Dulce Fuente.
+            </p>
+
+
+        </div>
+
+
+
+        {% if promociones %}
+
+
+            <div class="row g-4 justify-content-center">
+
+
+                {% for promocion in promociones %}
+
+
+                    <div class="col-12 col-md-6 col-lg-3">
+
+
+                        <div class="promocion-card">
+
+
+                            <div class="promocion-icono">
+
+                                ✨
+
+                            </div>
+
+
+                            <div class="promocion-contenido">
+
+
+                                <span>
+                                    PROMOCIÓN
+                                </span>
+
+
+                                <p>
+                                    {{ promocion }}
+                                </p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="text-center py-4">
+
+                <div style="font-size:60px;">
+                    🎁
+                </div>
+
+                <h4>
+                    Próximamente tendremos nuevas promociones
+                </h4>
+
+                <p>
+                    Visítanos nuevamente para conocer
+                    nuestros descuentos especiales.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+<section
+    id="nosotros"
+    class="nosotros">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+
+            <!-- IZQUIERDA -->
+
+            <div class="col-lg-5">
+
+
+                <div class="caja-nosotros">
+
+
+                    <span>
+
+                        LA DULCE FUENTE
+
+                    </span>
+
+
+                    <div class="corazon">
+
+                        ♡
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DERECHA -->
+
+            <div class="col-lg-7 contenido-nosotros">
+
+
+                <span class="mini-titulo">
+
+                    NUESTRA ESENCIA
+
+                </span>
+
+
+                <h2>
+
+                    Donde nace el antojo.
+
+                </h2>
+
+
+                <p>
+
+                    En La Dulce Fuente buscamos transformar
+                    cada celebración en un recuerdo especial
+                    mediante pasteles y postres preparados
+                    con dedicación.
+
+                </p>
+
+
+                <p>
+
+                    Cada pedido puede personalizarse
+                    de acuerdo con los gustos y necesidades
+                    de nuestros clientes.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section
+    class="contacto">
+
+    <div class="container text-center">
+
+
+        <span>
+            ¿TIENES UN ANTOJO?
+        </span>
+
+
+        <h2>
+            Hagámoslo realidad.
+        </h2>
+
+
+        <p>
+
+            ¿Tienes alguna pregunta, deseas una cotización
+            o necesitas un diseño especial?
+
+        </p>
+
+
+        <!-- CONTACTO REAL -->
+
+        <a
+            href="{% url 'contacto' %}"
+            class="btn boton-contacto">
+
+            Contáctanos ✉️
+
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+            <a
+                href="#catalogo"
+                class="btn boton-contacto ms-2">
+
+                Elegir mi pastel 🎂
+
+            </a>
+
+        {% else %}
+
+            <a
+                href="{% url 'registro' %}"
+                class="btn boton-contacto ms-2">
+
+                Crear mi cuenta
+
+            </a>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-contenido">
+
+
+            <!-- MARCA -->
+
+            <div>
+
+
+                <h4>
+                    La Dulce Fuente
+                </h4>
+
+
+                <p>
+                    Pastelería & Repostería
+                </p>
+
+
+                <p>
+                    Donde nace el antojo.
+                </p>
+
+
+            </div>
+
+
+            <!-- ENLACES -->
+
+            <div class="footer-links">
+
+
+                <a
+                    href="{% url 'inicio' %}">
+
+                    Inicio
+
+                </a>
+
+
+                <a
+                    href="#catalogo">
+
+                    Catálogo
+
+                </a>
+
+
+                <a
+                    href="#promociones">
+
+                    Promociones
+
+                </a>
+
+
+                <a
+                    href="#nosotros">
+
+                    Nosotros
+
+                </a>
+
+
+                <a
+                    href="{% url 'contacto' %}">
+
+                    Contacto
+
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                    <a
+                        href="{% url 'mis_pedidos' %}">
+
+                        Mis pedidos
+
+                    </a>
+
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- DERECHOS -->
+
+        <div class="footer-final">
+
+
+            <p>
+
+                © 2026 La Dulce Fuente.
+                Todos los derechos reservados.
+
+            </p>
+
+
+            <p>
+
+                Sitio web desarrollado con fines académicos.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+
+    document.addEventListener(
+
+        "DOMContentLoaded",
+
+        function () {
+
+
+            const elementos =
+                document.querySelectorAll(
+                    ".producto-card, .promocion-card"
+                );
+
+
+            const observador =
+                new IntersectionObserver(
+
+                    function (entradas) {
+
+
+                        entradas.forEach(
+
+                            function (entrada) {
+
+
+                                if (
+                                    entrada.isIntersecting
+                                ) {
+
+                                    entrada.target.style.opacity =
+                                        "1";
+
+                                    entrada.target.style.transform =
+                                        "translateY(0)";
+
+                                }
+
+
+                            }
+
+                        );
+
+
+                    },
+
+                    {
+                        threshold: 0.10
+                    }
+
+                );
+
+
+            elementos.forEach(
+
+                function (elemento) {
+
+
+                    elemento.style.opacity =
+                        "0";
+
+
+                    elemento.style.transform =
+                        "translateY(25px)";
+
+
+                    elemento.style.transition =
+                        "opacity .6s ease, transform .6s ease";
+
+
+                    observador.observe(
+                        elemento
+                    );
+
+
+                }
+
+            );
+
+
+            const enlaces =
+                document.querySelectorAll(
+                    "#menu .nav-link"
+                );
+
+
+            enlaces.forEach(
+
+                function (enlace) {
+
+
+                    enlace.addEventListener(
+
+                        "click",
+
+                        function () {
+
+
+                            const menu =
+                                document.getElementById(
+                                    "menu"
+                                );
+
+
+                            if (
+                                menu &&
+                                menu.classList.contains("show")
+                            ) {
+
+
+                                const instancia =
+                                    bootstrap.Collapse.getOrCreateInstance(
+                                        menu
+                                    );
+
+
+                                instancia.hide();
+
+
+                            }
+
+
+                        }
+
+                    );
+
+
+                }
+
+            );
+
+
+        }
+
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
